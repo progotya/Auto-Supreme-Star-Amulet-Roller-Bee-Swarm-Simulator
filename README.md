@@ -5,6 +5,8 @@ Does not automatically claim the SSA (I didn't want to test that because I don't
 
 If I feel like it I will update this to add full automation (auto claiming SSA)
 
+I've done minimal testing on other devices so if you have a problem open an issue.
+
 ## Prerequisites
 - **Python 3.8+**
 - **Tesseract OCR** installed locally (default path: C:\Program Files\Tesseract-OCR\tesseract.exe). Update the path in main.py if Tesseract is somewhere else.
