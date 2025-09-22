@@ -1,6 +1,7 @@
 # Auto SSA Roller
 
 Automatically rolls Supreme Star Amulets until the desired requirements from config.json are met.
+Does not automatically claim the SSA (I didn't want to test that because I don't want to accidentally lose my own SSA lol)
 
 ## Prerequisites
 - **Python 3.8+**
