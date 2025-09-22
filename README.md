@@ -9,12 +9,11 @@ Does not automatically claim the SSA (I didn't want to test that because I don't
 
 ## Installation
 1. Clone or download this repository.
-2. (Optional) Create and activate a virtual environment.
-3. Dependencies are installed automatically when main.py runs, but you can pre-install them:
+2. Dependencies are installed automatically when main.py runs, but you can pre-install them:
    `ash
    pip install pyautogui pytesseract Pillow opencv-python numpy keyboard colorama
    `
-4. Ensure Tesseract OCR is installed (it is an external installation).
+3. Ensure Tesseract OCR is installed (it is an external installation).
 
 ## Configuration
 Edit config.json to control behaviour:
