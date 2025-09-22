@@ -11,7 +11,7 @@
             1
         ],
         "White Pollen": [
-            true,
+            false,
             30,
             2
         ],
@@ -22,7 +22,7 @@
         ],
         "Blue Pollen": [
             true,
-            30,
+            55,
             1
         ],
         "Bee Gather Pollen": [
@@ -37,17 +37,17 @@
         ],
         "Convert Rate": [
             true,
-            1.1,
+            1.15,
             1
         ],
         "Bee Ability Rate": [
             true,
-            2,
+            4,
             1
         ],
         "Critical Chance": [
             true,
-            2,
+            4,
             1
         ],
         "Required stats count": "This is how many stats you want out of 5. Ex. if 4, then 4/5 stats set to true (stats under set requirement will be counted as a subtraction to the stat count) must be present on the amulet for it to be accepted.",
@@ -55,20 +55,24 @@
     },
     "passives": {
         "Passive": [
+            "true/false = enabled/disabled",
             "1 = required, 2 = secondary required, 3 = ignored"
         ],
-        "Guiding Star": 3,
-        "Pop Star": 1,
-        "Scorching Star": 3,
-        "Star Shower": 3,
-        "Gummy Star": 3,
-        "Star Saw": 3
+
+        "Guiding Star": [true, 3],
+        "Pop Star": [true, 1],
+        "Scorching Star": [true, 3],
+        "Star Shower": [true, 3],
+        "Gummy Star": [true, 3],
+        "Star Saw": [true, 3]
     },
+
     "automation": {
         "Auto roll": true,
         "Roll double passives": false,
-
         "better_mode": "Will only accept a new SSA if every stat from the old SSA is present and every stat of the new ssa is >= the old stat",
-        "Better mode": false
+        "Better mode": false,
+        "Webhook": "https://discord.com/api/webhooks/1419772412387655691/EXPgYdqar8shaLjL6Lbs4PGGmd_jZJImc8JSJU-bxAIkNvc1WNIxe8xrEMjB3Qw_ahPe",
+        "Send webook logs": true
     }
 }

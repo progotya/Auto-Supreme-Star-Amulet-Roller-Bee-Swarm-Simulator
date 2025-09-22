@@ -10,6 +10,7 @@ import ctypes
 from ctypes import wintypes
 import re
 import json
+import requests
 
 REQUIRED_DEPENDENCIES = {
     "pyautogui": "pyautogui",
@@ -18,7 +19,8 @@ REQUIRED_DEPENDENCIES = {
     "cv2": "opencv-python",
     "numpy": "numpy",
     "keyboard": "keyboard",
-    "colorama": "colorama"
+    "colorama": "colorama",
+    "requests": "requests"
 }
 
 
@@ -53,6 +55,8 @@ from colorama import Fore, Style
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 SCREENSHOT_NAME = "current_amulet.png"
+WEBHOOKURL = json.load(open('config.json', 'r'))['automation']['Webhook']
+SENDWEBHOOK = json.load(open('config.json', 'r'))['automation']['Send webook logs']
 
 STAT_KEYWORDS = {
     "Red Pollen": ["red", "pollen"],
@@ -444,8 +448,8 @@ def load_and_prepare_config(show_summary=True):
     return config
 
 def print_config_settings(config):
-    print("\n=== Loaded Config Settings ===")
-    print("Stats:")
+    content = "\n=== Loaded Config Settings ===\n"
+    content += "Stats:\n"
     enabled_stats = 0
     for stat, entry in config["stats"].items():
         if stat in ("Stat", "Required stats count", "required_stats_count"):
@@ -457,10 +461,10 @@ def print_config_settings(config):
             continue
         enabled_stats += 1
         mode_str = "REQUIRED" if mode == 1 else "OPTIONAL"
-        print(f"  - {stat}: ENABLED, value: {value}, mode: {mode_str}")
-    print(f"Total enabled stats: {enabled_stats}/5\n")
+        content += f"  - {stat}: ENABLED, value: {value}, mode: {mode_str}\n"
+    content += f"Total enabled stats: {enabled_stats}/5\n\n"
 
-    print("Passives:")
+    content += "Passives:\n"
     primary_count = 0
     secondary_count = 0
     for passive, value in config["passives"].items():
@@ -472,33 +476,43 @@ def print_config_settings(config):
             continue
         if mode == 1:
             primary_count += 1
-            print(f"  - {passive}: PRIMARY REQUIRED")
+            content += f"  - {passive}: PRIMARY REQUIRED\n"
         elif mode == 2:
             secondary_count += 1
-            print(f"  - {passive}: SECONDARY REQUIRED")
+            content += f"  - {passive}: SECONDARY REQUIRED\n"
         elif mode == 3:
-            print(f"  - {passive}: IGNORED")
-    print(f"Total primary passives: {primary_count}/2")
-    print(f"Secondary passive options: {secondary_count}\n")
+            content += f"  - {passive}: IGNORED\n"
+    content += f"Total primary passives: {primary_count}/2\n"
+    content += f"Secondary passive options: {secondary_count}\n\n"
 
     automation_cfg = config.get("automation", {})
     if automation_cfg:
-        print("Automation:")
         auto_roll = automation_cfg.get("Auto roll", False)
         roll_double = automation_cfg.get("Roll double passives", False)
         better_mode = automation_cfg.get("Better mode", False)
         button_positions = automation_cfg.get("Button positions", {})
+
         auto_roll_status = "ENABLED" if auto_roll else "DISABLED"
         roll_double_status = "YES" if roll_double else "NO"
         better_status = "ON" if better_mode else "OFF"
-        print(f"  - Auto roll: {auto_roll_status}")
-        print(f"  - Roll double passives: {roll_double_status}")
-        print(f"  - Better mode: {better_status}")
+
+        content += "Automation:\n"
+        content += f"  - Auto roll: {auto_roll_status}\n"
+        content += f"  - Roll double passives: {roll_double_status}\n"
+        content += f"  - Better mode: {better_status}\n"
+
         if isinstance(button_positions, dict) and button_positions:
-            print("  - Button overrides:")
+            content += "  - Button overrides:\n"
             for name, value in button_positions.items():
-                print(f"      {name}: {value}")
-        print()
+                content += f"      {name}: {value}\n"
+        content += "\n"
+
+    print(content)
+    if SENDWEBHOOK:        requests.post(
+            WEBHOOKURL,
+            json={"content": f"```{content}```"},
+            headers={"Content-Type": "application/json"}
+        )
 
 def validate_config(config):
     max_values = {
@@ -658,11 +672,30 @@ def is_amulet_accepted(old_stats, new_stats, old_passives, new_passives, config)
 
         if reasons:
             print("[DECLINED] SSA was declined for the following reasons:")
+            decline_content = "** **\n\n **Declined:**\n"
             for reason in reasons:
-                print(" -", reason)
+                print(" - ", reason)
+                decline_content += " - " + str(reason) + "\n"
+            if SENDWEBHOOK:                
+                with open("current_amulet.png", "rb") as f:
+                    requests.post(
+                        WEBHOOKURL,
+                        files={"file": f},
+                        data={"content": (decline_content + "```")}
+                    )
+
             return False
 
-        print("[ACCEPTED] SSA is strictly better than the current one!")
+
+
+        print("[ACCEPTED] SSA is better than or equal to old amulet")
+        if SENDWEBHOOK:            
+            with open("current_amulet.png", "rb") as f:
+                        requests.post(
+                            WEBHOOKURL,
+                            files={"file": f},
+                            data={"content": "Accepted amulet!"}
+                        )
         return True
 
     stat_count = 0
@@ -724,10 +757,27 @@ def is_amulet_accepted(old_stats, new_stats, old_passives, new_passives, config)
 
     if decline_reasons:
         print("[DECLINED] SSA was declined for the following reasons:")
+        decline_content = "** **\n\n **Declined:**\n"
         for reason in decline_reasons:
-            print(" -", reason)
-        return False
+            print(" - ", reason)
+            decline_content += " - " + str(reason) + "\n"
+        if SENDWEBHOOK:            
+            with open("current_amulet.png", "rb") as f:
+                requests.post(
+                WEBHOOKURL,
+                files={"file": f},
+                data={"content": decline_content}
+            )
 
+        return False
+    
+    if SENDWEBHOOK:        
+        with open("current_amulet.png", "rb") as f:
+            requests.post(
+                WEBHOOKURL,
+                files={"file": f},
+                data={"content": "Accepted amulet!"}
+            )
     print("[ACCEPTED] SSA meets all requirements!")
     return True
 
