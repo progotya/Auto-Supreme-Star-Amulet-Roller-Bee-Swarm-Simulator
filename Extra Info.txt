@@ -1,0 +1,24 @@
+Make sure not to exceed max values in config.txt
+
+Max values:
+    "Pollen": 20,
+    "White Pollen": 70,
+    "Red Pollen": 70,
+    "Blue Pollen": 70,
+    "Bee Gather Pollen": 70,
+    "Instant Conversion": 12,
+    "Convert Rate": 1.25,
+    "Bee Ability Rate": 7,
+    "Critical Chance": 7
+
+  
+Minimum values:
+    "Pollen": 5,
+    "White Pollen": 15,
+    "Red Pollen": 15,
+    "Blue Pollen": 15,
+    "Bee Gather Pollen": 15,
+    "Instant Conversion": 3,
+    "Convert Rate": 1.05,
+    "Bee Ability Rate": 1,
+    "Critical Chance": 1
