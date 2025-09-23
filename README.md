@@ -32,7 +32,7 @@ Edit `config.json` to control behaviour:
 1. Configure config.json to your liking.
 2. Run main.py.
 3. Press = to activate the auto-roller. You may have to click “No” for the first prompt or it will get stuck on it. You’ll notice if it happens—still working on a fix.
-4. Press - at any time to halt the script.
+4. Press - at any time to stop the script.
 
 ## Notes
 - Screenshots are saved as current_amulet.png for debugging.
@@ -46,4 +46,5 @@ Edit `config.json` to control behaviour:
 ![Decline Reasons](docs/declined-example.png)
 
 ![OCR Comparison](docs/ocr-comparison.png)
+
 
