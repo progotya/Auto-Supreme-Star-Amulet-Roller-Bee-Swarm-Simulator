@@ -74,7 +74,8 @@
         "Better mode": false,
         "Webhook": "webhook",
         "Send webook logs": true,
-        "Your userID": "discord user id"
+        "Your UserID": "discord user id"
     }
 
 }
+
