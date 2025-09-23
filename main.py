@@ -57,7 +57,7 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 SCREENSHOT_NAME = "current_amulet.png"
 WEBHOOKURL = json.load(open('config.json', 'r'))['automation']['Webhook']
 SENDWEBHOOK = json.load(open('config.json', 'r'))['automation']['Send webook logs']
-
+USERID = json.load(open('config.json', 'r'))['automation']['Your UserID']
 STAT_KEYWORDS = {
     "Red Pollen": ["red", "pollen"],
     "White Pollen": ["white", "pollen"],
@@ -508,7 +508,8 @@ def print_config_settings(config):
         content += "\n"
 
     print(content)
-    if SENDWEBHOOK:        requests.post(
+    if SENDWEBHOOK:        
+        requests.post(
             WEBHOOKURL,
             json={"content": f"```{content}```"},
             headers={"Content-Type": "application/json"}
@@ -694,7 +695,7 @@ def is_amulet_accepted(old_stats, new_stats, old_passives, new_passives, config)
                         requests.post(
                             WEBHOOKURL,
                             files={"file": f},
-                            data={"content": "Accepted amulet!"}
+                            data={"content": f"k/r <@{USERID}>"}
                         )
         return True
 
@@ -776,7 +777,7 @@ def is_amulet_accepted(old_stats, new_stats, old_passives, new_passives, config)
             requests.post(
                 WEBHOOKURL,
                 files={"file": f},
-                data={"content": "Accepted amulet!"}
+                data={"content": f"k/r <@{USERID}>"}
             )
     print("[ACCEPTED] SSA meets all requirements!")
     return True

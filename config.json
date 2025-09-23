@@ -22,7 +22,7 @@
         ],
         "Blue Pollen": [
             true,
-            55,
+            56,
             1
         ],
         "Bee Gather Pollen": [
@@ -37,7 +37,7 @@
         ],
         "Convert Rate": [
             true,
-            1.15,
+            1.17,
             1
         ],
         "Bee Ability Rate": [
@@ -72,8 +72,8 @@
         "Roll double passives": false,
         "better_mode": "Will only accept a new SSA if every stat from the old SSA is present and every stat of the new ssa is >= the old stat",
         "Better mode": false,
-        "Webhook": "webhook url here",
-        "Send webook logs": true
+        "Webhook": "https://discord.com/api/webhooks/1419772412387655691/EXPgYdqar8shaLjL6Lbs4PGGmd_jZJImc8JSJU-bxAIkNvc1WNIxe8xrEMjB3Qw_ahPe",
+        "Send webook logs": true,
+        "Your userID": "1173653858631827539"
     }
-
 }
