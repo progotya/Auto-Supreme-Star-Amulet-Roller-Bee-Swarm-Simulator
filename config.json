@@ -70,12 +70,15 @@
     "automation": {
         "Auto roll": true,
         "Roll double passives": false,
+        
         "better_mode": "Will only accept a new SSA if every stat from the old SSA is present and every stat of the new ssa is >= the old stat",
         "Better mode": false,
+        
         "Webhook": "webhook",
         "Send webook logs": true,
         "Your UserID": "discord user id"
     }
 
 }
+
 
