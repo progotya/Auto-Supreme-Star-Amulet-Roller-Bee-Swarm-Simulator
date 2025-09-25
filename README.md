@@ -1,8 +1,10 @@
 # Auto SSA Roller
 
-Automatically rolls Supreme Star Amulets until the desired requirements from config.json are met. Does not automatically claim the SSA (I didnít want to test that because I donít want to accidentally lose my own SSA lol). If I feel like it I will update this to add full automation (auto claiming SSA).
+Automatically rolls Supreme Star Amulets until the desired requirements from config.json are met. Does not automatically claim the SSA (I didn‚Äôt want to test that because I don‚Äôt want to accidentally lose my own SSA lol). If I feel like it I will update this to add full automation (auto claiming SSA).
 
-Iíve done minimal testing on other devices so if you have a problem open an issue.
+I‚Äôve done minimal testing on other devices so if you have a problem open an issue.
+
+Todo: discord bot support, k/r query, fix better mode to be less strict
 
 ## Prerequisites
 - **Python 3.8+**
@@ -29,8 +31,8 @@ Edit `config.json` to control behaviour:
 ## Usage
 1. Configure config.json to your liking.
 2. Run main.py.
-3. Press = to activate the auto-roller. You may have to click ìNoî for the first prompt or it will get stuck on it. Youíll notice if it happensóstill working on a fix.
-4. Press - at any time to halt the script.
+3. Press = to activate the auto-roller. You may have to click ‚ÄúNo‚Äù for the first prompt or it will get stuck on it. You‚Äôll notice if it happens‚Äîstill working on a fix.
+4. Press - at any time to end the script.
 
 ## Notes
 - Screenshots are saved as current_amulet.png for debugging.
@@ -44,3 +46,4 @@ Edit `config.json` to control behaviour:
 ![Decline Reasons](docs/declined-example.png)
 
 ![OCR Comparison](docs/ocr-comparison.png)
+
