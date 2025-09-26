@@ -4,7 +4,7 @@ Automatically rolls Supreme Star Amulets until the desired requirements from con
 
 I’ve done minimal testing on other devices so if you have a problem open an issue.
 
-Todo: discord bot support, k/r query, fix better mode to be less strict
+Todo: discord bot support, k/r query, fix better mode to be less strict, maybe convert into exe
 
 ## Prerequisites
 - **Python 3.8+**
@@ -46,6 +46,7 @@ Edit `config.json` to control behaviour:
 ![Decline Reasons](docs/declined-example.png)
 
 ![OCR Comparison](docs/ocr-comparison.png)
+
 
 
 
