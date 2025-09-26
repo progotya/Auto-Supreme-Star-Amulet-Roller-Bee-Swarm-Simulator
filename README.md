@@ -26,7 +26,7 @@ Edit `config.json` to control behaviour:
   - `Auto roll`: true/false to enable auto rolling.
   - `Roll double passives`: whether to spend 500b honey for double passives.
   - `Better mode`: when true, ignores other config rules and only accepts a new SSA if every stat from the old SSA is present and not worse.
-  - `Webhook`: optional Discord webhook URL to receive config summaries and per-roll results (with screenshots).
+  - `Webhook`: optional Discord webhook URL to receive SSA logs with screenshots and decline reasons.
 
 ## Usage
 1. Configure config.json to your liking.
@@ -46,5 +46,6 @@ Edit `config.json` to control behaviour:
 ![Decline Reasons](docs/declined-example.png)
 
 ![OCR Comparison](docs/ocr-comparison.png)
+
 
 
