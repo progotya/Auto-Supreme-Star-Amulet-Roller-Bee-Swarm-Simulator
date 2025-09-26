@@ -13,7 +13,7 @@ Todo: discord bot support, k/r query, fix better mode to be less strict
 ## Installation
 1. Clone or download this repository.
 2. Dependencies are installed automatically when main.py runs, but you can pre-install them:
-   `ash
+   `
    pip install pyautogui pytesseract Pillow opencv-python numpy keyboard colorama
    `
 3. Ensure Tesseract OCR is installed (it is an external installation).
@@ -46,4 +46,5 @@ Edit `config.json` to control behaviour:
 ![Decline Reasons](docs/declined-example.png)
 
 ![OCR Comparison](docs/ocr-comparison.png)
+
 
